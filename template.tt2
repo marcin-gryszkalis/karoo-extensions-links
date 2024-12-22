@@ -25,5 +25,8 @@
         </div>
         [% END %]
     </div>
+    <div class="container">
+        <a href="https://support.hammerhead.io/hc/en-us/articles/31576497036827-Companion-App-Sideloading">Karoo Sideloading documentation</a>
+    </div>
 </body>
 </html>
