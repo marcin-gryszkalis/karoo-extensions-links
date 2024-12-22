@@ -1,0 +1,8 @@
+github_token: ""
+title: "Karoo Extensions"
+max-releases: 3
+output: index.html
+repositories:
+  - timklge/karoo-powerbar
+  - timklge/karoo-reminder
+  - timklge/karoo-headwind
