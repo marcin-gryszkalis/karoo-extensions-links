@@ -53,7 +53,7 @@ foreach my $repo (@$repositories)
             # Process the latest 3 releases
             for my $release (@$releases[0..$config->{"max-releases"}-1])
             {
-                my $release_name = $release->{name} || "Unnamed Release";
+                my $release_name = $release->{tag_name} || $release->{name} || "Unnamed Release";
                 my $apk_url;
 
                 # Find the first .apk asset
