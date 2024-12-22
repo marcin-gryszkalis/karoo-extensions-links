@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[% title %]</title>
+    <link rel="stylesheet" href="[% css_file %]">
+</head>
+<body>
+    <div class="container">
+        <h1>[% title %]</h1>
+        [% FOREACH repo IN repositories %]
+        <div class="repository">
+            <h2><a href="https://github.com/[% repo.name %]">[% repo.name %]</a></h2>
+            <p>[% repo.description %]</p>
+            [% IF repo.releases.size > 0 %]
+            <p>
+                [% FOREACH release IN repo.releases %]
+                <a href="[% release.url %]" class="release-link">[% release.name %]</a> [% IF !loop.last %]| [% END %]
+                [% END %]
+            </p>
+            [% ELSE %]
+            <p>No releases with .apk assets found.</p>
+            [% END %]
+        </div>
+        [% END %]
+    </div>
+</body>
+</html>
