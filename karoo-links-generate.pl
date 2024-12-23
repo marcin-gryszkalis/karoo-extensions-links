@@ -11,7 +11,8 @@ my $repositories = $config->{repositories} or die "No repositories specified in 
 
 my $ua = LWP::UserAgent->new;
 $ua->default_header('Accept' => 'application/vnd.github+json');
-$ua->default_header('Authorization' => "token $config->{github_token}");
+# authorization not required for public repos
+$ua->default_header('Authorization' => "token $config->{github_token}") if $config->{github_token};
 
 my $template = Template->new({
     INCLUDE_PATH => '.',
