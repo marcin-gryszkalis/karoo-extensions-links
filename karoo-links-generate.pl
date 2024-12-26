@@ -3,9 +3,12 @@ use strict;
 use warnings;
 use JSON;
 use YAML::XS 'LoadFile';
+use File::Slurp qw(read_file write_file);
 use LWP::UserAgent;
 use Template;
+use POSIX qw(strftime);
 
+my $now = strftime "%Y-%m-%dT%H:%M:%S.000Z", gmtime;
 my $config = LoadFile('config.yaml') or die "Failed to load configuration file: 'config.yaml'\n";
 my $repositories = $config->{repositories} or die "No repositories specified in config file.\n";
 
@@ -98,6 +101,20 @@ my $vars =
     repositories => \@repositories_data,
     title        => $config->{title},
     css_file     => "style.css",
+    last_update  => $now,
 };
 
-$template->process('template.tt2', $vars, $config->{output}) or die $template->error(), "\n";
+my $contents;
+$template->process('template.tt2', $vars, \$contents) or die $template->error(), "\n";
+
+my $c1 = read_file($config->{output}) || "";
+my $c2 = $contents;
+
+$c1 =~ s/"20\S+Z"//;
+$c2 =~ s/"20\S+Z"//;
+
+if ($c1 ne $c2)
+{
+    write_file($config->{output}, $contents);
+}
+

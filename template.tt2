@@ -28,5 +28,20 @@
     <div class="container">
         <a href="https://support.hammerhead.io/hc/en-us/articles/31576497036827-Companion-App-Sideloading">Karoo Sideloading documentation</a>
     </div>
+
+    <div class="container" id="LastUpdate" style="test-align: center">
+    </div>
+
+    <script>
+        let last_update = "[% last_update %]"
+        let d = new Date(last_update).toString();
+        document.getElementById("LastUpdate").innerHTML = "Last update: " + d;
+    </script>
+
+    <div class="container" style="test-align: center">
+        mg@fork.pl | <a href="https://github.com/marcin-gryszkalis/karoo-extensions-links">https://github.com/marcin-gryszkalis/karoo-extensions-links</a>
+    </div>
+
+
 </body>
 </html>
