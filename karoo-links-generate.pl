@@ -54,9 +54,10 @@ foreach my $repo (@$repositories)
 
         if (@$releases > 0)
         {
-            # Process the latest 3 releases
-            for my $release (@$releases[0..$config->{"max-releases"}-1])
+            my $i = $config->{"max-releases"};
+            for my $release (@$releases)
             {
+                last unless $i;
                 my $release_name = $release->{tag_name} || $release->{name} || "Unnamed Release";
                 my $apk_url;
 
@@ -83,6 +84,8 @@ foreach my $repo (@$repositories)
                         name => $release_name,
                         url  => $apk_url,
                     };
+
+                    $i--;
                 }
             }
         }
