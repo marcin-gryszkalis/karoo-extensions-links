@@ -5,7 +5,7 @@ Links to Karoo SDK extensions hosted on GitHub
 
 
 ## Follow all updates on apps through Obtainium
-Sideload [Obtainium](https://github.com/ImranR98/Obtainium) and add each apps you want to follow.
+Sideload [Obtainium](https://github.com/ImranR98/Obtainium) and add each apps you want to follow into Obtainium apps.
 You won't have to uninstall app you already have, just add them onto the [Obtainium](https://github.com/imranr98/obtainium) and you'll be allowed to follow update.
 
 ### Howto add app into Obtainium
