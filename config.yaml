@@ -3,6 +3,7 @@ title: "Karoo Extensions"
 max-releases: 3
 output: output/index.html
 repositories:
+  - valterc/ki2
   - timklge/karoo-powerbar
   - timklge/karoo-reminder
   - timklge/karoo-headwind
@@ -10,4 +11,5 @@ repositories:
   - lockevod/Karoo-KPower
   - lockevod/Karoo-KRemote
   - lockevod/Karoo-KDoubleType
-#  - valterc/ki2
+  - itxsvv/kxradar
+
