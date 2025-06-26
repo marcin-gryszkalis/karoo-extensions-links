@@ -7,9 +7,14 @@ repositories:
   - timklge/karoo-powerbar
   - timklge/karoo-reminder
   - timklge/karoo-headwind
+  - timklge/karoo-tilehunting
+  - timklge/karoo-routegraph
+  - timklge/karoo-notepad
+  - timklge/karoo-spintunes
   - maduwatas/Vin-HkE
   - lockevod/Karoo-KPower
   - lockevod/Karoo-KRemote
   - lockevod/Karoo-KDoubleType
   - itxsvv/kxradar
+  - dimskiy/WaypointsKaroo
 
