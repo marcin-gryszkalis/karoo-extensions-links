@@ -10,9 +10,33 @@ use POSIX qw(strftime);
 
 my $now = strftime "%Y-%m-%dT%H:%M:%S.000Z", gmtime;
 my $config = LoadFile('config.yaml') or die "Failed to load configuration file: 'config.yaml'\n";
-my $repositories = $config->{repositories} or die "No repositories specified in config file.\n";
+my $extensions_url = $config->{"extensions-url"} or die "No extensions-url specified in config file.\n";
 
 my $ua = LWP::UserAgent->new;
+
+# fetch list of extensions and extract GitHub owner/repo from homepage or manifest URL
+my $ext_response = $ua->get($extensions_url);
+die "Failed to fetch extensions list from $extensions_url: ", $ext_response->status_line, "\n"
+    unless $ext_response->is_success;
+my $extensions = decode_json($ext_response->content)->{extensions}
+    or die "No extensions found in $extensions_url\n";
+
+my (@repositories, %seen);
+foreach my $ext (@$extensions)
+{
+    for my $url (grep { defined } $ext->{homepage}, $ext->{manifest})
+    {
+        if ($url =~ m{^https?://github\.com/([^/]+)/([^/#?]+)}i)
+        {
+            my $repo = "$1/$2";
+            $repo =~ s/\.git$//;
+            push @repositories, $repo unless $seen{lc $repo}++;
+            last;
+        }
+    }
+}
+my $repositories = \@repositories;
+
 $ua->default_header('Accept' => 'application/vnd.github+json');
 # authorization not required for public repos
 $ua->default_header('Authorization' => "token $config->{github_token}") if $config->{github_token};
